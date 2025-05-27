@@ -3,6 +3,7 @@ from sqlalchemy import ForeignKey, Table, Column, Integer, String, DateTime, Met
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
+# Define the naming convention for foreign keys
 convention = {
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 }
