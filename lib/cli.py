@@ -17,7 +17,7 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            pass
+            get_all_appointments()
         elif choice == "2":
             pass
         elif choice == "3":
@@ -61,3 +61,6 @@ def menu():
     print("11: ")
     print("12: ")
     print("13: ")
+    
+if __name__ == "__main__":
+    main()
