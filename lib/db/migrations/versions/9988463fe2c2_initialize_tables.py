@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:lib/db/migrations/versions/9988463fe2c2_initialize_tables.py
 """initialize tables
 
 Revision ID: 9988463fe2c2
 Revises: 
 Create Date: 2025-05-29 22:47:38.390252
+========
+"""Initial schema with 3 tables
+
+Revision ID: c56777819eb9
+Revises: 
+Create Date: 2025-05-29 20:51:03.991294
+>>>>>>>> 5ae788e (tables reinitialize):lib/db/migrations/versions/c56777819eb9_initial_schema_with_3_tables.py
 
 """
 from typing import Sequence, Union
@@ -12,7 +20,11 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<<< HEAD:lib/db/migrations/versions/9988463fe2c2_initialize_tables.py
 revision: str = '9988463fe2c2'
+========
+revision: str = 'c56777819eb9'
+>>>>>>>> 5ae788e (tables reinitialize):lib/db/migrations/versions/c56777819eb9_initial_schema_with_3_tables.py
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
