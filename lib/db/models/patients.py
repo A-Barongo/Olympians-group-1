@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, DateTime, Enum, func, Date
 from sqlalchemy.orm import Session
-from sqlalchemy.orm import declarative_base
+
 import enum
 from datetime import date
-from models.base import Base
 
-Base = declarative_base()
+
+from .base import Base
 
 # Enum classes
 class StatusEnum(enum.Enum):

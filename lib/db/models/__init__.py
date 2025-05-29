@@ -1,3 +1,3 @@
-from base import Base
-from models.patients import Patient
+from .base import Base
+from .patients import Patient
 
