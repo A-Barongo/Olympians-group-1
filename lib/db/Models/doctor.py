@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from db.models import Base
 # Make sure Appointment is imported if used in relationships
-# from .appointment import Appointment  # Uncomment and adjust if needed
+from .appointment import Appointment  # Uncomment and adjust if needed
 
 class Doctor(Base):
     __tablename__ = 'doctors'
