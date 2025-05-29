@@ -7,7 +7,6 @@
 
 ***
 
-
 ## Introduction
 
 You now have a basic idea of what constitutes a CLI, but you (understandably!)
