@@ -1,8 +1,9 @@
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from .base import Base
 # Make sure Appointment is imported if used in relationships
-# from .appointment import Appointment  # Uncomment and adjust if needed
+from .appointment import Appointment  # Uncomment and adjust if needed
 
 class Doctor(Base):
     __tablename__ = 'doctors'
@@ -21,21 +22,30 @@ class Doctor(Base):
             f"<Doctor(id={self.id}, name='{self.name}', specialty='{self.specialty}', "
             f"national_id='{self.national_id}', license_no='{self.medical_license_number}')>"
         )
+    @classmethod
+    def create_doctor(cls, session, name: str, specialty: str, contact_info: str, national_id: str, medical_license_number: str):
+        
+        new_doctor = cls(
+            name=name,
+            specialty=specialty,
+            contact_info=contact_info,
+            national_id=national_id,
+            medical_license_number=medical_license_number
+        )
+        session.add(new_doctor)
+        session.commit()
+        return new_doctor
+    @classmethod
+    def get_by_id(cls, session, doctor_id:int):
+        return session.query(cls).filter_by(id=doctor_id).first()
     
     @classmethod
-    def get_by_id(cls, session, doctor_id):
-        doctor = session.query(cls).filter_by(id=doctor_id).first()
-        if doctor:
-            return {
-                "id": doctor.id,
-                "name": doctor.name,
-                "specialty": doctor.specialty,
-                "contact_info": doctor.contact_info,
-            }
-        return None
+    def get_all_doctors(cls, session):
+        
+        return session.query(cls).all()
     
     @classmethod
-    def delete_by_id(cls, session, doctor_id):
+    def delete_by_id(cls, session, doctor_id:int):
         doctor = session.query(cls).filter_by(id=doctor_id).first()
         if doctor:
             session.delete(doctor)
@@ -46,23 +56,13 @@ class Doctor(Base):
    
 
     @classmethod
-    def find_by_name(cls, session, name):
-        doctors = session.query(cls).filter(cls.name.ilike(f"%{name}%")).all()
-        # Return a list of tuples: (id, name, specialty)
-        return [(doc.id, doc.name, doc.specialty) for doc in doctors]
+    def find_by_name(cls, session, name:str):
+        
+        return session.query(cls).filter(cls.name.ilike(f"%{name}%")).all()
     
     @classmethod
     def find_by_specialty(cls, session, specialty):
-        doctors = session.query(cls).filter(cls.specialty.ilike(f"%{specialty}%")).all()
-
-        return [{
-            "id": doc.id,
-            "name": doc.name,
-            "specialty": doc.specialty,
-            "contact_info": doc.contact_info
-        } for doc in doctors
-
-        ]
+        return session.query(cls).filter(cls.specialty.ilike(f"%{specialty}%")).all()
     
     @classmethod
     def find_by_time(cls, session, time_str):
@@ -71,20 +71,18 @@ class Doctor(Base):
             (doc.name, appt.time)
             for doc in session.query(cls).join(cls.appointments).all()
             for appt in doc.appointments
-            if appt.time == time_str
+            if appt.start_time == time_str
         ]
         
     @classmethod
     def find_by_patient(cls, session, patient_name):
         # List of dicts: each doctor with patient they treated
-        results = []
-        for doc in session.query(cls).join(cls.appointments).join(Appointment.patient).all():
-            for appt in doc.appointments:
-                if appt.patient and patient_name.lower() in appt.patient.name.lower():
-                    results.append({
-                        "doctor_name": doc.name,
-                        "patient_name": appt.patient.name,
-                        "appointment_time": appt.time
-                    })
-        return results
+        return (
+            session.query(cls)
+            .join(Appointment)
+            .join(Appointment.patient) # Direct join through relationship
+            .filter(Appointment.patient.has(name=patient_name)) # Use has() for relationship filtering
+            .distinct() # To get unique doctors
+            .all()
+        )
        
