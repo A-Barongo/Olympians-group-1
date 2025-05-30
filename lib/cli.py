@@ -1,11 +1,9 @@
 from helpers import(
     exit_program,
     get_all_appointments,
-    find_appoinment_by_patient_id,
+    find_appointment_by_patient_id,
     find_appointment_by_doctor_id,
-    find_appointement_by_time,
-    get_patient_status_by_id,
-    get_appointment_description_by_patient_id,
+    find_appointment_by_time,
     delete_appointment_by_patient_id,
     delete_appointment_by_doctor_id
 )
@@ -48,7 +46,7 @@ def main():
 def menu():
     print("")
     print("0. Exit the program")
-    print("1. ")
+    print("1. Get all appointments")
     print("2. ")
     print("3. ")
     print("4: ")
