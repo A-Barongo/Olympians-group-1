@@ -1,13 +1,17 @@
+from sqlalchemy.orm import sessionmaker
+from seed import engine
+
+Session = sessionmaker(bind=engine)
+session = Session()
 from helpers import(
     exit_program,
     get_all_appointments,
-    find_appoinment_by_patient_id,
+    find_appointment_by_patient_id,
     find_appointment_by_doctor_id,
-    find_appointement_by_time,
-    get_patient_status_by_id,
-    get_appointment_description_by_patient_id,
-    delete_appointment_by_patient_id,
-    delete_appointment_by_doctor_id
+    find_appointment_by_time,
+    update_appointment,
+    create_appointment,
+    delete_appointment_by_id
 )
 
 def main():
@@ -17,7 +21,7 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            get_all_appointments()
+            get_all_appointments(session)
         elif choice == "2":
             pass
         elif choice == "3":
@@ -48,7 +52,7 @@ def main():
 def menu():
     print("")
     print("0. Exit the program")
-    print("1. ")
+    print("1. Get all appointments")
     print("2. ")
     print("3. ")
     print("4: ")
@@ -63,4 +67,5 @@ def menu():
     print("13: ")
     
 if __name__ == "__main__":
+    print("Welcome to the Olympians Hopital database.Select the functionality you require")
     main()

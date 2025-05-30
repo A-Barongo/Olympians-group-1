@@ -56,7 +56,8 @@ class Appointment(Base):
         )
         session.add(new_appointment)
         session.commit()
-        
+        return new_appointment
+    
     @classmethod
     def get_all_appointments(cls, session: Session):
         return session.query(cls).all()
@@ -79,11 +80,11 @@ class Appointment(Base):
         return session.query(cls).filter_by(start_time=time).all()
     
     @classmethod
-    def find_by_patient_id(cls,session: Session,patient_id):
+    def find_by_patient_id(cls,session: Session,patient_id:int):
         return session.query(cls).filter_by(patient_id=patient_id).all()
     
     @classmethod
-    def find_by_doctor_id(cls,session: Session,doctor_id):
+    def find_by_doctor_id(cls,session: Session,doctor_id:int):
         return session.query(cls).filter_by(doctor_id=doctor_id).all()
     
     @classmethod
@@ -91,13 +92,11 @@ class Appointment(Base):
        
         return session.query(cls).filter_by(app_status=status).all()
     
-   
+      
 
     @classmethod
     def update_appointment(cls, session: Session, appointment_id: int, **kwargs) -> Union["Appointment", None]: # <--- MODIFIED THIS LINE
-        """
-        Updates an existing appointment's details.
-        """
+        
         appointment = cls.find_by_id(session, appointment_id)
         if not appointment:
             return None
