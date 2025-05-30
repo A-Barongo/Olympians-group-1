@@ -62,4 +62,5 @@ def menu():
     print("13: ")
     
 if __name__ == "__main__":
+    print("Welcome to the Olympians Hopital database.Select the functionality you require")
     main()
