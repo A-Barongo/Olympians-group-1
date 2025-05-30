@@ -1,3 +1,8 @@
+from sqlalchemy.orm import sessionmaker
+from seed import engine
+
+Session = sessionmaker(bind=engine)
+session = Session()
 from helpers import(
     exit_program,
     get_all_appointments,
@@ -16,7 +21,7 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            get_all_appointments()
+            get_all_appointments(session)
         elif choice == "2":
             pass
         elif choice == "3":
