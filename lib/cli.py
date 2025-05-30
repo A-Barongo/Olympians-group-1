@@ -4,8 +4,9 @@ from helpers import(
     find_appointment_by_patient_id,
     find_appointment_by_doctor_id,
     find_appointment_by_time,
-    delete_appointment_by_patient_id,
-    delete_appointment_by_doctor_id
+    update_appointment,
+    create_appointment,
+    delete_appointment_by_id
 )
 
 def main():
