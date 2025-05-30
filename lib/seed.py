@@ -2,13 +2,13 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from datetime import date, time
 
-from models.appointment import Appointment, App_statusEnum, App_typeEnum
-from models.base import Base
-from models.patients import Patient
-from models.doctor import Doctor
+from db.models.appointment import Appointment, App_statusEnum, App_typeEnum
+from db.models.base import Base
+from db.models.patients import Patient
+from db.models.doctor import Doctor
 
 
-DATABASE_URL = "sqlite:///olympians.db"  
+DATABASE_URL = "sqlite:///db/migrations/olympians.db"  
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)

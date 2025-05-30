@@ -1,4 +1,4 @@
-from models.appointment import Appointment,App_statusEnum, App_typeEnum
+from db.models.appointment import Appointment,App_statusEnum, App_typeEnum
 
 def exit_program():
     print("Goodbye!")
