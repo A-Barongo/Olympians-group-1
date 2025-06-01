@@ -70,21 +70,27 @@
 ### 1. Clone the Repository
 
 
-git clone https://github.com/yourusername/olympian-hospital-db.git
+git clone https://github.com/yourusername/olympian-hospital-db.git  
+
+
 cd olympian-hospital-db  
 
 ### 2.  Install Dependencies
 Make sure you have Python 3 installed.
 
 pip install -r requirements.txt  
+
 ### 3.  Setup Database  
 Run the following to create and seed the database:  
 
 python seed.py  
+
 This will populate the database with fake doctors, patients, and appointments.  
 
-### 4.  Launch the CLI  
+### 4.  Launch the CLI 
+
 python cli.py  
+
 Follow the on-screen prompts to navigate the application.  
 
 Project Structure   
@@ -96,8 +102,8 @@ olympian-hospital-db/
 ├── helpers.py           # Helper functions used across the CLI  
 ├── database/            
 │   ├── models.py        # SQLAlchemy ORM models  
-│   └── __init__.py      # DB setup and session creation  
-│
+│   └── __init__.py      # DB setup and session creation    
+│  
 ├── requirements.txt     # Python dependencies  
 └── README.md            # Project documentation  
 ✅ Sample CLI Menu
@@ -126,9 +132,9 @@ Conflict checker for overlapping appointments.
 
 ## Contributor
 Built by :
-1. Allan Barongo
-2.Emmanuel Gitau
-3.Paul Ashton
+1. Allan Barongo  
+2.Emmanuel Gitau  
+3.Paul Ashton   
 ## License  
 This project is licensed under the MIT License.  
 
