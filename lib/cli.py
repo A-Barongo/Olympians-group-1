@@ -99,7 +99,7 @@ def menu():
     print("4. Find Patient by Name")
     print("5. Find Patients registered today")
     print("6. Delete Patient by ID")    
-    print("2.  Create a new Doctor")
+    print("7.  Create a new Doctor")
     print("8. Get all Doctors")
     print("9. Find Doctor by ID")
     print("10. Find Doctor by Name")
