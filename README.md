@@ -71,63 +71,62 @@
 
 
 git clone https://github.com/yourusername/olympian-hospital-db.git
-cd olympian-hospital-db
-###2.  Install Dependencies
+cd olympian-hospital-db  
+
+### 2.  Install Dependencies
 Make sure you have Python 3 installed.
 
-pip install -r requirements.txt
-###3.  Setup Database
-Run the following to create and seed the database:
+pip install -r requirements.txt  
+### 3.  Setup Database  
+Run the following to create and seed the database:  
 
-python seed.py
-This will populate the database with fake doctors, patients, and appointments.
+python seed.py  
+This will populate the database with fake doctors, patients, and appointments.  
 
-###4.  Launch the CLI
-python cli.py
-Follow the on-screen prompts to navigate the application.
+### 4.  Launch the CLI  
+python cli.py  
+Follow the on-screen prompts to navigate the application.  
 
-Project Structure
+Project Structure   
 
 olympian-hospital-db/
 │
-├── cli.py               # Command-line interface logic
-├── seed.py              # Script to populate the database
-├── helpers.py           # Helper functions used across the CLI
+├── cli.py               # Command-line interface logic  
+├── seed.py              # Script to populate the database  
+├── helpers.py           # Helper functions used across the CLI  
 ├── database/            
-│   ├── models.py        # SQLAlchemy ORM models
-│   └── __init__.py      # DB setup and session creation
+│   ├── models.py        # SQLAlchemy ORM models  
+│   └── __init__.py      # DB setup and session creation  
 │
-├── requirements.txt     # Python dependencies
-└── README.md            # Project documentation
+├── requirements.txt     # Python dependencies  
+└── README.md            # Project documentation  
 ✅ Sample CLI Menu
 sql
 
-1. Create a new Patient
-2. Get all Patients
-3. Get Patient by ID
-4. Search Patients by Name
-5. Get Patients Registered Today
-6. Delete Patient
+1. Create a new Patient  
+2. Get all Patients  
+3. Get Patient by ID  
+4. Search Patients by Name  
+5. Get Patients Registered Today  
+6. Delete Patient  
 ...
-13. Create a new Appointment
-14. Get All Appointments
+13. Create a new Appointment  
+14. Get All Appointments  
 ...
-23. Exit
-## Future Improvements
-Add user login/authentication for staff.
+23. Exit  
+## Future Improvements  
+Add user login/authentication for staff.  
 
-Export data to CSV or PDF.
+Export data to CSV or PDF.  
 
-Web interface using Flask or Django.
+Web interface using Flask or Django.  
+Calendar view for appointments.  
 
-Calendar view for appointments.
+Conflict checker for overlapping appointments.  
 
-Conflict checker for overlapping appointments.
+## License  
+This project is licensed under the MIT License.  
 
-## License
-This project is licensed under the MIT License.
-
-##Acknowledgements
-Faker for realistic dummy data.
-
-SQLAlchemy for ORM and database interaction.
+## Acknowledgements  
+Faker for realistic dummy data.  
+SQLAlchemy for ORM and database interaction.  
