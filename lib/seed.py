@@ -8,11 +8,36 @@ from db.models.patients import Patient,GenderEnum,StatusEnum
 from db.models.doctor import Doctor
 
 
-DATABASE_URL = "sqlite:///.db/migrations/olympians.db"  
+DATABASE_URL = "sqlite:///db/migrations/olympians.db"  
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
+
+def seed_doctors():
+    try:
+        doc1 = Doctor.create_doctor(
+            session,
+            name="Dr. Aisha Karim",
+            specialty="Cardiology",
+            contact_info="aisha.karim@hospital.com",
+            national_id="ID123456",
+            medical_license_number="LIC001"
+        )
+        print(f"Seeded doctor: {doc1.name}")
+
+        doc2 = Doctor.create_doctor(
+            session,
+            name="Dr. Ben Okeke",
+            specialty="Pediatrics",
+            contact_info="ben.okeke@clinic.com",
+            national_id="ID789012",
+            medical_license_number="LIC002"
+        )
+        print(f"Seeded doctor: {doc2.name}")
+    except Exception as e:
+        print(f"Error seeding doctor: {e}")
+
 
 def seed_appointments():
     sample_appointments = [
@@ -102,5 +127,7 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
 
     # Run seeding
+    seed_doctors()
     seed_appointments()
     seed_patients()
+    

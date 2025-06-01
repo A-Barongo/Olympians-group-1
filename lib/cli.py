@@ -2,6 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from seed import engine
 
+
 DATABASE_URL = "sqlite:///db/migrations/olympians.db"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
@@ -21,7 +22,19 @@ from helpers import(
     find_patient_by_name,
     find_patients_registered_today,
     create_patient,
-    delete_patient_by_id
+    delete_patient_by_id,
+    get_all_doctors,
+    find_doctor_by_id,
+    find_doctor_by_name,
+    find_doctor_by_specialty,
+    create_doctor,
+    delete_doctor_by_id,
+    update_doctor,
+   
+
+    
+
+    
 )
 
 def main():
@@ -31,50 +44,78 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            get_all_appointments(session)
+            create_patient(session)
         elif choice == "2":
-            get_all_patients(session)
+           get_all_patients(session)
         elif choice == "3":
-           pass 
+            find_patient_by_id(session)
         elif choice == "4":
-            pass
+            find_patient_by_name(session)
         elif choice == "5":
-            pass
+           find_patients_registered_today(session)
         elif choice == "6":
-            pass
+           delete_patient_by_id(session)
         elif choice == "7":
-            pass
+            create_doctor(session)
         elif choice == "8":
-            pass
+           get_all_doctors(session)
         elif choice == "9":
-            pass
+           find_doctor_by_id(session)
         elif choice == "10":
-            pass
+           find_doctor_by_name(session)
         elif choice == "11":
-            pass
+           find_doctor_by_specialty(session)
         elif choice == "12":
-            pass
+            update_doctor(session)
         elif choice == "13":
-            pass
+            delete_doctor_by_id(session)
+        elif choice == "14":
+            create_appointment(session)
+        elif choice == "15":
+            delete_doctor_by_id(session)
+        elif choice == "16":
+             get_all_appointments(session)
+        elif choice == "17":
+          find_appointment_by_patient_id(session)
+        elif choice == "18":
+          find_appointment_by_doctor_id(session)
+        elif choice == "19":
+          get_todays_appointments(session)
+        elif choice == "20":
+         find_appointments_by_date(session)
+        elif choice == "21":
+          update_appointment(session)
+        elif choice == "22":
+         delete_appointment_by_id(session)
         else:
             print("Invalid choice")
             
 def menu():
     print("")
     print("0. Exit the program")
-    print("1. Get all appointments")
+    print("1. Create a new Patient")
     print("2. Get all Patients")
-    print("3. ")
-    print("4: ")
-    print("5: ")
-    print("6: ")
-    print("7. ")
-    print("8. ")
-    print("9. ")
-    print("10: ")
-    print("11: ")
-    print("12: ")
-    print("13: ")
+    print("3. Find Patient by ID")
+    print("4. Find Patient by Name")
+    print("5. Find Patients registered today")
+    print("6. Delete Patient by ID")    
+    print("2.  Create a new Doctor")
+    print("8. Get all Doctors")
+    print("9. Find Doctor by ID")
+    print("10. Find Doctor by Name")
+    print("11. Find Doctors by Specialty")
+    print("12. Update Doctor")
+    print("13. Delete Doctor by ID")
+    print("14. Create a new Appointment")
+    print("15. Delete Appointment by ID")
+    print("16. Get all Appointments")
+    print("17. Find Appointment by Patient ID")
+    print("18. Find Appointment by Doctor ID")
+    print("19. Get Today's Appointments")
+    print("20. Find Appointments by Date")
+    print("21. Update Appointment")
+    print("22. Delete Appointment by ID")
+   
     
 if __name__ == "__main__":
     print("Welcome to the Olympians Hopital database.Select the functionality you require")

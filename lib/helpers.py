@@ -1,5 +1,6 @@
 from db.models.appointment import Appointment,App_statusEnum, App_typeEnum
 from db.models.patients import Patient, GenderEnum, StatusEnum
+from db.models.doctor import Doctor
 from datetime import datetime
 from datetime import date
 from sqlalchemy import func
@@ -184,3 +185,99 @@ def delete_patient_by_id(session):
         print("Patient deleted.")
     else:
         print("Patient not found.")
+
+# Doctor helper code
+
+
+
+def get_all_doctors(session):
+    doctors = Doctor.get_all_doctors(session)
+    if doctors:
+        for doctor in doctors:
+            print(doctor)
+    else:
+        print("No doctors found.")
+
+def find_doctor_by_id(session):
+    doctor_id = input("Enter doctor ID: ")
+    doctor = Doctor.get_by_id(session, int(doctor_id))
+    if doctor:
+        print(doctor)
+    else:
+        print(f"No doctor found with ID {doctor_id}.")
+
+def find_doctor_by_name(session):
+    name = input("Enter doctor's name: ")
+    results = Doctor.find_by_name(session, name)
+    if results:
+        for doctor in results:
+            print(doctor)
+    else:
+        print(f"No doctors found with name '{name}'.")
+
+def find_doctor_by_specialty(session):
+    specialty = input("Enter specialty: ")
+    results = Doctor.find_by_specialty(session, specialty)
+    if results:
+        for doctor in results:
+            print(doctor)
+    else:
+        print(f"No doctors found with specialty '{specialty}'.")
+
+def create_doctor(session):
+    try:
+        name = input("Enter doctor's name: ")
+        specialty = input("Enter specialty: ")
+        email = input("Enter email: ")
+
+        gender_input = input(f"Enter gender {list(GenderEnum.__members__.keys())}: ").lower()
+        gender_enum = GenderEnum[gender_input]
+
+        status_input = input(f"Enter status {list(StatusEnum.__members__.keys())}: ").lower()
+        status_enum = StatusEnum[status_input]
+
+        new_doctor = Doctor.create_doctor(
+            session,
+            name=name,
+            specialty=specialty,
+            email=email,
+            gender=gender_enum,
+            status=status_enum
+        )
+        print("Doctor created:", new_doctor)
+    except Exception as e:
+        print("Error creating doctor:", e)
+
+def update_doctor(session):
+    doctor_id = input("Enter doctor ID to update: ")
+    doctor = Doctor.get_by_id(session, int(doctor_id))
+    if doctor:
+        try:
+            name = input(f"Enter new name (leave blank to keep '{doctor.name}'): ") or doctor.name
+            specialty = input(f"Enter new specialty (leave blank to keep '{doctor.specialty}'): ") or doctor.specialty
+            email = input(f"Enter new email (leave blank to keep '{doctor.email}'): ") or doctor.email
+
+            status_input = input(f"Enter new status {list(StatusEnum.__members__.keys())} (leave blank to keep current): ").lower()
+            status_enum = StatusEnum[status_input] if status_input else doctor.status
+
+            updated = Doctor.update_doctor(
+                session,
+                doctor_id=int(doctor_id),
+                name=name,
+                specialty=specialty,
+                email=email,
+                status=status_enum
+            )
+            print(f"Doctor updated: {updated}")
+        except Exception as exc:
+            print("Error updating doctor:", exc)
+    else:
+        print(f"Doctor with ID {doctor_id} not found.")
+
+def delete_doctor_by_id(session):
+    doctor_id = input("Enter doctor ID to delete: ")
+    success = Doctor.delete_by_id(session, int(doctor_id))
+    if success:
+        print("Doctor deleted.")
+    else:
+        print("Doctor not found.")
