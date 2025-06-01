@@ -38,7 +38,7 @@ class Appointment(Base):
     patient = relationship("Patient", back_populates="appointments")
     
     def __repr__(self):
-        return f"<Appointment(id={self.id}, date={self.date}, doctor_id={self.doctor_id}, patient_id={self.patient_id})>"
+        return f"(id={self.id}, date={self.date}, start time={self.start_time}, end time={self.end_time}, doctor_id={self.doctor_id}, patient_id={self.patient_id})"
 
     
     @classmethod
@@ -77,7 +77,10 @@ class Appointment(Base):
             session.commit()
             return True
         return False
-        
+    @classmethod
+    def get_by_date(cls, session: Session, target_date: Date):
+        return session.query(cls).filter(cls.date == target_date).all()
+    
     @classmethod
     def find_by_patient_id(cls,session: Session,patient_id:int):
         return session.query(cls).filter_by(patient_id=patient_id).all()

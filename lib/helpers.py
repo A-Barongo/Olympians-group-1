@@ -63,6 +63,19 @@ def get_todays_appointments(session):
     else:
         print("No appointments scheduled for today.")
 
+def find_appointments_by_date(session):
+    date_input = input("Enter appointment date (YYYY-MM-DD): ")
+    try:
+        target_date = datetime.strptime(date_input, "%Y-%m-%d").date()
+        appointments = Appointment.get_by_date(session, target_date)
+        if appointments:
+            print(f"Appointments scheduled on {target_date}:")
+            for appointment in appointments:
+                print(appointment)
+        else:
+            print(f"No appointments found on {target_date}.")
+    except ValueError:
+        print("Invalid date format. Please use YYYY-MM-DD.")
         
 def create_appointment(session):
     patient_id = int(input("Enter patient ID: "))

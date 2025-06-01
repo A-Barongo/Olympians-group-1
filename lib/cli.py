@@ -12,6 +12,7 @@ from helpers import(
     find_appointment_by_patient_id,
     find_appointment_by_doctor_id,
     get_todays_appointments,
+    find_appointments_by_date,
     update_appointment,
     create_appointment,
     delete_appointment_by_id,
