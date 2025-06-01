@@ -31,6 +31,7 @@
 - **SQLite** (for development)
 - **Faker** (for generating fake data)
 - **CLI Interface** (via `input()`)
+-**Alembic for database migration
 
 ---
 
