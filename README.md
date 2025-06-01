@@ -69,7 +69,7 @@
 
 ### 1. Clone the Repository
 
-```bash
+
 git clone https://github.com/yourusername/olympian-hospital-db.git
 cd olympian-hospital-db
 ###2.  Install Dependencies
