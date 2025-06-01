@@ -1,5 +1,6 @@
 from db.models.appointment import Appointment,App_statusEnum, App_typeEnum
-
+from db.models.patients import Patient, GenderEnum, StatusEnum
+from datetime import datetime
 def exit_program():
     print("Goodbye!")
     exit()
@@ -90,5 +91,80 @@ def delete_appointment_by_id(session):
         print("Appointment deleted.")
     else:
         print("Appointment not found.")
+        
+#Patients helper code
+
+def get_all_patients(session):
+    patients = Patient.get_all_patients(session)
+    if patients:
+        for patient in patients:
+            print(patient)
+    else:
+        print("No patients found.")
+
+def find_patient_by_id(session):
+    patient_id = input("Enter patient ID: ")
+    patient = Patient.get_by_id(session, int(patient_id))
+    if patient:
+        print(patient)
+    else:
+        print(f"No patient found with ID {patient_id}.")
+
+def find_patient_by_name(session):
+    name = input("Enter patient name: ")
+    results = Patient.find_by_name(session, name)
+    if results:
+        for patient in results:
+            print(patient)
+    else:
+        print(f"No patients found with name '{name}'.")
+
+def find_patients_registered_today(session):
+    patients = Patient.get_all_today(session)
+    if patients:
+        print("Patients registered today:")
+        for p in patients:
+            print(p)
+    else:
+        print("No patients registered today.")
+
+def create_patient(session):
+    try:
+        name = input("Enter name: ")
+        dob_input = input("Enter date of birth (YYYY-MM-DD): ")
+        date_of_birth = datetime.strptime(dob_input, "%Y-%m-%d").date()
+
+        gender_input = input(f"Enter gender {list(GenderEnum.__members__.keys())}: ").lower()
+        gender_enum = GenderEnum[gender_input]
+
+        email = input("Enter email: ")
+
+        status_input = input(f"Enter status {list(StatusEnum.__members__.keys())}: ").lower()
+        status_enum = StatusEnum[status_input]
+
+        current_medication = input("Enter current medication (optional): ")
+        chronic_conditions = input("Enter chronic conditions (optional): ")
+
+        new_patient = Patient.create_patient(
+            session,
+            name=name,
+            date_of_birth=date_of_birth,
+            gender=gender_enum,
+            email=email,
+            status=status_enum,
+            current_medication=current_medication,
+            chronic_conditions=chronic_conditions
+        )
+        print("Patient created:", new_patient)
+    except Exception as e:
+        print("Error creating patient:", e)
+
+def delete_patient_by_id(session):
+    patient_id = input("Enter patient ID to delete: ")
+    success = Patient.delete_by_id(session, int(patient_id))
+    if success:
+        print("Patient deleted.")
+    else:
+        print("Patient not found.")
 
 

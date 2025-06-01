@@ -11,7 +11,13 @@ from helpers import(
     find_appointment_by_time,
     update_appointment,
     create_appointment,
-    delete_appointment_by_id
+    delete_appointment_by_id,
+    get_all_patients,
+    find_patient_by_id,
+    find_patient_by_name,
+    find_patients_registered_today,
+    create_patient,
+    delete_patient_by_id
 )
 
 def main():
@@ -25,7 +31,7 @@ def main():
         elif choice == "2":
             pass
         elif choice == "3":
-            pass
+            find_appointment_by_time(session)
         elif choice == "4":
             pass
         elif choice == "5":
