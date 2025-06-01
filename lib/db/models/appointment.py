@@ -3,6 +3,9 @@ import enum
 from sqlalchemy import ForeignKey, Table, Column, Integer, String, Date,Time,Enum
 from sqlalchemy.orm import relationship, Session
 from typing import Union
+from datetime import datetime
+from datetime import date
+from sqlalchemy import func
 #from .patient import Patient
 
 
@@ -74,11 +77,7 @@ class Appointment(Base):
             session.commit()
             return True
         return False
-    
-    @classmethod
-    def find_by_time(cls,session: Session,time):
-        return session.query(cls).filter_by(start_time=time).all()
-    
+        
     @classmethod
     def find_by_patient_id(cls,session: Session,patient_id:int):
         return session.query(cls).filter_by(patient_id=patient_id).all()
@@ -107,4 +106,9 @@ class Appointment(Base):
         
         session.commit()
         return appointment
-        
+    
+    
+    @classmethod
+    def get_appointments_today(cls, session: Session):
+        today = date.today()
+        return session.query(cls).filter(func.date(cls.date) == today).all()   

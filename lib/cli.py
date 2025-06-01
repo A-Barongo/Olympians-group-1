@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from seed import engine
 
-DATABASE_URL = "sqlite:///lib/db/migrations/olympians.db"
+DATABASE_URL = "sqlite:///db/migrations/olympians.db"
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -11,7 +11,7 @@ from helpers import(
     get_all_appointments,
     find_appointment_by_patient_id,
     find_appointment_by_doctor_id,
-    find_appointment_by_time,
+    get_todays_appointments,
     update_appointment,
     create_appointment,
     delete_appointment_by_id,
@@ -34,7 +34,7 @@ def main():
         elif choice == "2":
             get_all_patients(session)
         elif choice == "3":
-            pass
+           pass 
         elif choice == "4":
             pass
         elif choice == "5":

@@ -1,6 +1,8 @@
 from db.models.appointment import Appointment,App_statusEnum, App_typeEnum
 from db.models.patients import Patient, GenderEnum, StatusEnum
 from datetime import datetime
+from datetime import date
+from sqlalchemy import func
 
 def exit_program():
     print("Goodbye!")
@@ -29,14 +31,7 @@ def find_appointment_by_doctor_id(session):
     else:
         print(f"Doctor ID {doctor_id} not found")
 
-def find_appointment_by_time(session):
-    time = input('Enter appointment start time (HH:MM:SS): ')
-    appointments = Appointment.find_by_time(session, time)
-    if appointments:
-        for appointment in appointments:
-            print(appointment)
-    else:
-        print(f"No appointments start at {time}")
+
 def update_appointment(session):
     appointment_id = input("Enter appointment ID:")
     appointment = Appointment.find_by_id(session, appointment_id)
@@ -58,6 +53,15 @@ def update_appointment(session):
             print("Error updating appointment: ", exc)
     else:
         print(f'Appointment ID {appointment_id} not found')
+
+def get_todays_appointments(session):
+    appointments = Appointment.get_appointments_today(session)
+    if appointments:
+        print("Appointments scheduled for today:")
+        for appointment in appointments:
+            print(appointment)
+    else:
+        print("No appointments scheduled for today.")
 
         
 def create_appointment(session):

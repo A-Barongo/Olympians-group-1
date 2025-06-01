@@ -8,7 +8,7 @@ from db.models.patients import Patient,GenderEnum,StatusEnum
 from db.models.doctor import Doctor
 
 
-DATABASE_URL = "sqlite:///lib/db/migrations/olympians.db"  
+DATABASE_URL = "sqlite:///.db/migrations/olympians.db"  
 
 engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
@@ -52,9 +52,13 @@ def seed_appointments():
     ]
 
     for appt_data in sample_appointments:
-        appointment = Appointment.create_appointment(session, **appt_data)
-        print(f"Created appointment ID: {appointment.id}")
+        try:
+            appointment = Appointment.create_appointment(session, **appt_data)
+            print(f"Created appointment ID: {appointment.id}")
+        except Exception as e:
+            print(f"Failed to seed appointment : {e}")
 
+    
 def seed_patients():
     patients_data = [
         {
@@ -94,7 +98,7 @@ def seed_patients():
             print(f"Failed to seed patient {patient['name']}: {e}")
 
 if __name__ == "__main__":
-    # Create tables if they don’t exist
+    
     Base.metadata.create_all(engine)
 
     # Run seeding
