@@ -19,8 +19,8 @@ class Doctor(Base):
 
     def __repr__(self):
         return (
-            f"<Doctor(id={self.id}, name='{self.name}', specialty='{self.specialty}', "
-            f"national_id='{self.national_id}', license_no='{self.medical_license_number}')>"
+            f"Doctor(id={self.id}, name='{self.name}', specialty='{self.specialty}', "
+            f"national_id='{self.national_id}', license_no='{self.medical_license_number}')"
         )
 
     @classmethod

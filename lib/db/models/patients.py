@@ -39,8 +39,8 @@ class Patient(Base):
 
    def __repr__(self):
        return(
-           f"<Patient(id={self.id}, name={self.name}, email={self.email})>"
-           f"<Status=`{self.status.name}`, registered={self.date_registered}>"
+           f"Patient(id={self.id}, name={self.name}, email={self.email})"
+           f"Status=`{self.status.name}`, registered={self.date_registered}"
        )
 
 # Properties
