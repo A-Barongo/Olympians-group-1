@@ -132,7 +132,7 @@ Conflict checker for overlapping appointments.
 
 ## Contributor
 Built by :
-1. Allan Barongo  
+1.Allan Barongo 
 2.Emmanuel Gitau  
 3.Paul Ashton   
 ## License  
