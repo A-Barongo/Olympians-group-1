@@ -124,6 +124,11 @@ Calendar view for appointments.
 
 Conflict checker for overlapping appointments.  
 
+## Contributor
+Built by :
+1. Allan Barongo
+2.Emmanuel Gitau
+3.Paul Ashton
 ## License  
 This project is licensed under the MIT License.  
 
