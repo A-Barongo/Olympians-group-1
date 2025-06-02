@@ -38,7 +38,7 @@ class Appointment(Base):
     patient = relationship("Patient", back_populates="appointments")
     
     def __repr__(self):
-        return f"(id={self.id}, date={self.date}, start time={self.start_time}, end time={self.end_time}, doctor_id={self.doctor_id}, patient_id={self.patient_id})"
+        return f"Appointment(id={self.id}, date={self.date}, start time={self.start_time}, end time={self.end_time}, doctor_id={self.doctor_id}, patient_id={self.patient_id})"
 
     
     @classmethod

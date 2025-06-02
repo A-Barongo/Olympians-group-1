@@ -17,16 +17,21 @@ def get_all_appointments(session):
 def find_appointment_by_patient_id(session):
     patient_id = input("Enter patient ID: ")
     appointments = Appointment.find_by_patient_id(session, patient_id)
+    patient=Patient.get_by_id(session,patient_id)
     if appointments:
+        print(patient)
         for appointment in appointments:
             print(appointment)
+                
     else:
         print(f"Patient ID {patient_id} not found")
 
 def find_appointment_by_doctor_id(session):
     doctor_id = input("Enter doctor ID: ")
     appointments = Appointment.find_by_doctor_id(session, doctor_id)
+    doctor=Doctor.get_by_id(session,doctor_id)
     if appointments:
+        print(doctor)
         for appointment in appointments:
             print(appointment)
     else:
